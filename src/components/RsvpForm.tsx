@@ -60,7 +60,7 @@ export function RsvpForm() {
     if (isAttending && (!busValue || peopleValue < 1)) {
       setStatus({
         type: "error",
-        message: "Indica personas y autobus."
+        message: "Indica personas y autobús."
       });
       return;
     }
@@ -68,7 +68,7 @@ export function RsvpForm() {
     if (isAttending && peopleValue > 1 && companionNames.length === 0) {
       setStatus({
         type: "error",
-        message: "Indica el nombre de los acompanantes."
+        message: "Indica el nombre de los acompañantes."
       });
       return;
     }
@@ -116,7 +116,7 @@ export function RsvpForm() {
       setStatus({
         type: "error",
         message:
-          "No se pudo enviar la respuesta. Revisa la conexion e intentalo de nuevo."
+          "No se pudo enviar la respuesta. Revisa la conexión e inténtalo de nuevo."
       });
       return;
     } finally {
@@ -151,7 +151,7 @@ export function RsvpForm() {
                 value="yes"
               />
               <label className="rsvp-choice-trigger" htmlFor="attending-yes">
-                <span>Si, alli estare</span>
+                <span>Sí, allí estaré</span>
               </label>
               <div className="rsvp-details-grid">
                 <label className="field">
@@ -170,20 +170,21 @@ export function RsvpForm() {
                   />
                 </label>
                 <label className="field">
-                  Servicio de autobus
+                  Servicio de autobús
                   <select defaultValue="" name="bus_needed">
                     <option value="" disabled>
                       Selecciona
                     </option>
-                    <option value="yes">Si, quiero plaza</option>
+                    <option value="round_trip">Sí, quiero autobús ida y vuelta</option>
+                    <option value="outbound_only">Sí, quiero autobús solo ida</option>
                     <option value="no">No, voy por mi cuenta</option>
                   </select>
                 </label>
                 <label className="field full">
-                  Nombres de acompanantes
+                  Nombres de acompañantes
                   <textarea
                     name="companion_names"
-                    placeholder="Si venis mas de una persona, un nombre por linea"
+                    placeholder="Si venís más de una persona, un nombre por línea"
                   />
                 </label>
                 <label className="field full">
@@ -207,7 +208,7 @@ export function RsvpForm() {
                 value="no"
               />
               <label className="rsvp-choice-trigger" htmlFor="attending-no">
-                <span>No podre ir</span>
+                <span>No podré ir</span>
               </label>
               <p className="rsvp-note">
                 Gracias por avisarnos. Puedes dejarnos un mensaje abajo si te
@@ -226,7 +227,7 @@ export function RsvpForm() {
         {isDebug ? (
           <p className="form-status">
             Debug RSVP: usa los radios nativos; si se ve el bloque de Si, el
-            movil ha marcado asistencia=yes. Personas=
+            móvil ha marcado asistencia=yes. Personas=
             {peopleCount}
           </p>
         ) : null}

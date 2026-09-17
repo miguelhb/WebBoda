@@ -158,7 +158,7 @@ export function GiftSectionClient({
       if (!response.ok) {
         setStatus({
           type: "error",
-          message: result?.message ?? "No se pudo guardar la aportacion."
+          message: result?.message ?? "No se pudo guardar la aportación."
         });
         return;
       }
@@ -175,13 +175,13 @@ export function GiftSectionClient({
         type: "success",
         message:
           result?.message ??
-          `Aportacion registrada para ${giftTitle}. Gracias por acompanarnos en esta etapa; cuando hagas la transferencia podremos organizarlo todo con calma.`
+          `Aportación registrada para ${giftTitle}. Gracias por acompañarnos en esta etapa; cuando hagas la transferencia podremos organizarlo todo con calma.`
       });
     } catch {
       setStatus({
         type: "error",
         message:
-          "No se pudo enviar la aportacion. Revisa la conexion e intentalo de nuevo."
+          "No se pudo enviar la aportación. Revisa la conexión e inténtalo de nuevo."
       });
       return;
     } finally {
@@ -203,20 +203,20 @@ export function GiftSectionClient({
 
       {!isClientLoading && gifts.length === 0 && status.type !== "error" ? (
         <div className="empty-state">
-          Todavia no hay regalos activos. Ejecuta el SQL de ejemplo en Supabase
+          Todavía no hay regalos activos. Ejecuta el SQL de ejemplo en Supabase
           para cargar los primeros.
         </div>
       ) : null}
 
       <div className="account-note">
         <div>
-          <h3>Tambien para nuestra nueva etapa</h3>
+          <h3>También para nuestra nueva etapa</h3>
           <p>
-            Si preferis no elegir una parte concreta del viaje, podeis usar la
-            misma cuenta para una aportacion general.
+            Si preferís no elegir una parte concreta del viaje, podéis usar la
+            misma cuenta para una aportación general.
           </p>
         </div>
-        <span>ES00 0000 0000 0000 0000 0000</span>
+        <span>ES16 0073 0100 5508 8516 4407</span>
       </div>
 
       <div className="gifts">
@@ -263,10 +263,10 @@ export function GiftSectionClient({
                     <input name="gift_id" type="hidden" value={gift.id} />
                     <input name="gift_title" type="hidden" value={gift.title} />
                     <p className="transfer-note">
-                      Con esto sabremos en que etapa quieres participar. Para
+                      Con esto sabremos en qué etapa quieres participar. Para
                       completarlo, solo queda hacer la transferencia cuando
                       puedas:
-                      <strong> ES00 0000 0000 0000 0000 0000</strong>
+                      <strong> ES16 0073 0100 5508 8516 4407</strong>
                     </p>
                     <label className="field">
                       Nombre
@@ -304,7 +304,7 @@ export function GiftSectionClient({
                       disabled={isSubmitting}
                       type="submit"
                     >
-                      {isSubmitting ? "Guardando..." : "Registrar aportacion"}
+                      {isSubmitting ? "Guardando..." : "Registrar aportación"}
                     </button>
                     {status.message && activeStatusGiftId === gift.id ? (
                       <p
@@ -401,7 +401,7 @@ async function withTimeout<T extends { data: unknown; error: unknown }>(
 
   const timeout = new Promise<never>((_, reject) => {
     timeoutId = setTimeout(() => {
-      reject(new Error("La conexion ha tardado demasiado."));
+      reject(new Error("La conexión ha tardado demasiado."));
     }, timeoutMs);
   });
 

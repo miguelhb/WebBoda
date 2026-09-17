@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Conchi & Miguel",
   description:
-    "Boda de Conchi y Miguel: confirmacion, plan del dia, regalos, canciones e historia."
+    "Boda de Conchi y Miguel: confirmación, plan del día, regalos, canciones e historia."
 };
 
 export default function RootLayout({

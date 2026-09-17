@@ -1,27 +1,60 @@
 const photos = [
-  { caption: "Foto 1", image: "/photos/20230515_181245.jpg" },
-  { caption: "Foto 2", image: "/photos/20231119_160951.jpg" },
-  { caption: "Foto 3", image: "/photos/20240303_125055.jpg" },
-  { caption: "Foto 4", image: "/photos/20240709_164007.jpg" },
-  { caption: "Foto 5", image: "/photos/20241130_175737.jpg" },
-  { caption: "Foto 6", image: "/photos/20250125_123142.jpg" },
-  { caption: "Foto 7", image: "/photos/DSCN0047.JPG" },
-  { caption: "Foto 8", image: "/photos/foto-miguel-hernandez.jpg" },
-  { caption: "Foto 9", image: "/photos/IMG_20220924_201654.jpg" },
-  { caption: "Foto 10", image: "/photos/IMG-20200201-WA0037.jpg" },
-  { caption: "Foto 11", image: "/photos/IMG-20210109-WA0133.jpg" },
-  { caption: "Foto 12", image: "/photos/IMG-20210523-WA0039-1.jpg" },
-  { caption: "Foto 13", image: "/photos/IMG-20210808-WA0010.jpg" },
-  { caption: "Foto 14", image: "/photos/IMG-20210902-WA0009.jpg" },
-  { caption: "Foto 15", image: "/photos/IMG-20220709-WA0041.jpg" },
-  { caption: "Foto 16", image: "/photos/IMG-20220821-WA0011.jpg" },
-  { caption: "Foto 17", image: "/photos/IMG-20240310-WA0038.jpg" },
-  { caption: "Foto 18", image: "/photos/IMG-20241201-WA0006.jpg" },
-  { caption: "Foto 19", image: "/photos/whatsapp-2026-08-08-234134.jpeg" },
-  { caption: "Foto 20", image: "/photos/IMG_0821_2.jpg" },
-  { caption: "Foto 21", image: "/photos/IMG_0876_2.jpg" },
-  { caption: "Foto 22", image: "/photos/IMG_1495_2.jpg" },
-  { caption: "Foto 23", image: "/photos/IMG_3361_2.jpg" }
+  {
+    caption: "Noviembre 2019 - De nuestras primeras citas",
+    image: "/photos/IMG-20200201-WA0037.jpg"
+  },
+  {
+    caption: "Enero 2021 - Filomena",
+    image: "/photos/IMG-20210109-WA0133.jpg"
+  },
+  {
+    caption: "Agosto 2021 - Llanos del Hospital (Benasque)",
+    image: "/photos/IMG-20210808-WA0010.jpg"
+  },
+  {
+    caption: "Septiembre 2021 - Fans del verano del norte",
+    image: "/photos/IMG-20210902-WA0009.jpg"
+  },
+  {
+    caption: "Agosto 2022 - La noche de Padilla",
+    image: "/photos/IMG-20220821-WA0011.jpg"
+  },
+  {
+    caption: "Agosto 2022 - excursión a Marrakech",
+    image: "/photos/IMG_3361_2.jpg"
+  },
+  {
+    caption: "Mayo 2023 - Snorkel en Cabo de Gata",
+    image: "/photos/DSCN0047.JPG"
+  },
+  {
+    caption: "Marzo 2024 - finde en Oporto",
+    image: "/photos/20240303_125055.jpg"
+  },
+  {
+    caption: "Mike Wasowsky y Celia Pelia",
+    image: "/photos/IMG-20240310-WA0038.jpg"
+  },
+  {
+    caption: "Octubre 2024 - Media Maratón de Valencia",
+    image: "/photos/IMG-20241201-WA0006.jpg"
+  },
+  {
+    caption: "Diciembre 2024 - Típica escapada navideña a Segovia",
+    image: "/photos/20241130_175737.jpg"
+  },
+  {
+    caption: "Enero 2025 - Cuando intentamos quitar el gotelé de nuestro nuevo hogar",
+    image: "/photos/20250125_123142.jpg"
+  },
+  {
+    caption: "Octubre 2025 - Ofrenda de Pilares",
+    image: "/photos/ofrenda-pilares-2025.jpeg"
+  },
+  {
+    caption: "Agosto 2026 - senderismo por el Valle de Aran",
+    image: "/photos/whatsapp-2026-08-08-234134.jpeg"
+  }
 ];
 
 export function PhotoCarousel() {

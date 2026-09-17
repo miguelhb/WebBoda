@@ -35,7 +35,7 @@ export function SongSuggestionForm() {
     if (!guestName || !songTitle) {
       setStatus({
         type: "error",
-        message: "Indica tu nombre y la cancion."
+        message: "Indica tu nombre y la canción."
       });
       return;
     }
@@ -58,7 +58,7 @@ export function SongSuggestionForm() {
       if (!response.ok) {
         setStatus({
           type: "error",
-          message: result?.message ?? "No se pudo guardar la cancion."
+          message: result?.message ?? "No se pudo guardar la canción."
         });
         return;
       }
@@ -74,7 +74,7 @@ export function SongSuggestionForm() {
       setStatus({
         type: "error",
         message:
-          "No se pudo enviar la cancion. Revisa la conexion e intentalo de nuevo."
+          "No se pudo enviar la canción. Revisa la conexión e inténtalo de nuevo."
       });
       return;
     } finally {
@@ -95,8 +95,8 @@ export function SongSuggestionForm() {
           <input name="guest_name" placeholder="Tu nombre" required />
         </label>
         <label className="field">
-          Cancion
-          <input name="song_title" placeholder="Nombre de la cancion" required />
+          Canción
+          <input name="song_title" placeholder="Nombre de la canción" required />
         </label>
         <label className="field">
           Artista
@@ -104,7 +104,7 @@ export function SongSuggestionForm() {
         </label>
       </div>
       <button className="button" disabled={isSubmitting} type="submit">
-        {isSubmitting ? "Guardando..." : "Sugerir cancion"}
+        {isSubmitting ? "Guardando..." : "Sugerir canción"}
       </button>
       {status.message ? (
         <p

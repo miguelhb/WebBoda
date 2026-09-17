@@ -27,18 +27,18 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      return formError(request, `No se pudo guardar la aportacion: ${error.message}`, "regalos");
+      return formError(request, `No se pudo guardar la aportación: ${error.message}`, "regalos");
     }
 
     return formSuccess(
       request,
-      `Aportacion registrada para ${giftTitle}. Gracias por acompanarnos en esta etapa; cuando hagas la transferencia podremos organizarlo todo con calma.`,
+      `Aportación registrada para ${giftTitle}. Gracias por acompañarnos en esta etapa; cuando hagas la transferencia podremos organizarlo todo con calma.`,
       "regalos"
     );
   } catch (error) {
     return formError(
       request,
-      error instanceof Error ? error.message : "No se pudo guardar la aportacion.",
+      error instanceof Error ? error.message : "No se pudo guardar la aportación.",
       "regalos"
     );
   }

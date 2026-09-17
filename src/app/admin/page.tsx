@@ -10,7 +10,7 @@ export default function AdminPage() {
           <span>Conchi & Miguel</span>
         </Link>
         <div className="nav-links">
-          <Link href="/">Web publica</Link>
+          <Link href="/">Web pública</Link>
         </div>
       </nav>
 
@@ -21,7 +21,7 @@ export default function AdminPage() {
             <h1 className="admin-title">Panel de Conchi & Miguel</h1>
           </div>
           <p className="section-copy">
-            Respuestas, autobus y aportaciones a regalos cargadas directamente
+            Respuestas, autobús y aportaciones a regalos cargadas directamente
             desde Supabase.
           </p>
         </div>

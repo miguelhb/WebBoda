@@ -11,6 +11,12 @@ export async function POST(request: NextRequest) {
       ? Number(formData.get("number_of_people") ?? 1)
       : 1;
     const busValue = String(formData.get("bus_needed") ?? "");
+    const busLabel =
+      busValue === "round_trip"
+        ? "Ida y vuelta"
+        : busValue === "outbound_only"
+          ? "Solo ida"
+          : null;
     const companionNames = isAttending
       ? String(formData.get("companion_names") ?? "")
           .split("\n")
@@ -23,11 +29,11 @@ export async function POST(request: NextRequest) {
     }
 
     if (isAttending && (!busValue || peopleValue < 1)) {
-      return formError(request, "Indica personas y autobus.", "confirmar");
+      return formError(request, "Indica personas y autobús.", "confirmar");
     }
 
     if (isAttending && peopleValue > 1 && companionNames.length === 0) {
-      return formError(request, "Indica el nombre de los acompanantes.", "confirmar");
+      return formError(request, "Indica el nombre de los acompañantes.", "confirmar");
     }
 
     const supabase = createServerSupabaseClient();
@@ -36,8 +42,8 @@ export async function POST(request: NextRequest) {
       attending: isAttending,
       number_of_people: peopleValue,
       companion_names: companionNames,
-      bus_needed: isAttending && busValue === "yes",
-      bus_stop: null,
+      bus_needed: isAttending && busValue !== "no",
+      bus_stop: isAttending ? busLabel : null,
       dietary_notes: isAttending
         ? String(formData.get("dietary_notes") ?? "").trim() || null
         : null,

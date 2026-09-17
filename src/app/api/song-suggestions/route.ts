@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     const message = String(formData.get("message") ?? "").trim();
 
     if (!guestName || !songTitle) {
-      return formError(request, "Indica tu nombre y la cancion.", "canciones");
+      return formError(request, "Indica tu nombre y la canción.", "canciones");
     }
 
     const supabase = createServerSupabaseClient();
@@ -24,14 +24,14 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      return formError(request, `No se pudo guardar la cancion: ${error.message}`, "canciones");
+      return formError(request, `No se pudo guardar la canción: ${error.message}`, "canciones");
     }
 
-    return formSuccess(request, "Cancion guardada. Prometemos valorar seriamente cada temazo.", "canciones");
+    return formSuccess(request, "Canción guardada. Prometemos valorar seriamente cada temazo.", "canciones");
   } catch (error) {
     return formError(
       request,
-      error instanceof Error ? error.message : "No se pudo guardar la cancion.",
+      error instanceof Error ? error.message : "No se pudo guardar la canción.",
       "canciones"
     );
   }

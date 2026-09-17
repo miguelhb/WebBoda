@@ -110,8 +110,16 @@ export function AdminDashboard() {
       (total, rsvp) => total + rsvp.number_of_people,
       0
     );
-    const busSeats = attendingRsvps.reduce(
+    const busOutboundSeats = attendingRsvps.reduce(
       (total, rsvp) => total + (rsvp.bus_needed ? rsvp.number_of_people : 0),
+      0
+    );
+    const busReturnSeats = attendingRsvps.reduce(
+      (total, rsvp) =>
+        total +
+        (rsvp.bus_needed && rsvp.bus_stop !== "Solo ida"
+          ? rsvp.number_of_people
+          : 0),
       0
     );
     const totalGiftAmount = contributions.reduce(
@@ -129,7 +137,8 @@ export function AdminDashboard() {
 
     return {
       attendingRsvps,
-      busSeats,
+      busOutboundSeats,
+      busReturnSeats,
       confirmedPeople,
       giftTotals,
       songCount: songs.length,
@@ -217,7 +226,7 @@ export function AdminDashboard() {
     if (error) {
       setStatus({
         type: "error",
-        message: `No se pudo iniciar sesion: ${error.message}`
+        message: `No se pudo iniciar sesión: ${error.message}`
       });
     }
   }
@@ -283,7 +292,7 @@ export function AdminDashboard() {
     form.reset();
     setStatus({
       type: "success",
-      message: "Regalo creado. Ya aparece en la web publica."
+      message: "Regalo creado. Ya aparece en la web pública."
     });
     loadAdminData();
   }
@@ -353,7 +362,7 @@ export function AdminDashboard() {
   }
 
   if (isLoadingSession) {
-    return <p className="section-copy">Cargando sesion...</p>;
+    return <p className="section-copy">Cargando sesión...</p>;
   }
 
   if (!user) {
@@ -439,8 +448,12 @@ export function AdminDashboard() {
             <strong>{stats.attendingRsvps.length}</strong>
           </div>
           <div className="stat">
-            <span>Plazas bus</span>
-            <strong>{stats.busSeats}</strong>
+            <span>Bus ida</span>
+            <strong>{stats.busOutboundSeats}</strong>
+          </div>
+          <div className="stat">
+            <span>Bus vuelta</span>
+            <strong>{stats.busReturnSeats}</strong>
           </div>
           <div className="stat">
             <span>Regalos</span>
@@ -473,7 +486,7 @@ export function AdminDashboard() {
                   <td>{rsvp.attending ? "Si" : "No"}</td>
                   <td>{rsvp.number_of_people}</td>
                   <td>{rsvp.companion_names?.join(", ") || "-"}</td>
-                  <td>{rsvp.bus_needed ? rsvp.bus_stop || "Si" : "No"}</td>
+                  <td>{rsvp.bus_needed ? rsvp.bus_stop || "Sí" : "No"}</td>
                   <td>{rsvp.dietary_notes || "-"}</td>
                   <td>{rsvp.message || "-"}</td>
                 </tr>
@@ -675,7 +688,7 @@ export function AdminDashboard() {
                 name="is_active"
                 type="checkbox"
               />
-              Visible en la web publica
+              Visible en la web pública
             </label>
           </div>
           <button className="button" disabled={isUpdatingGift} type="submit">
@@ -712,7 +725,7 @@ function exportRsvps(rsvps: Rsvp[]) {
         "Personas",
         "Acompanantes",
         "Bus",
-        "Parada bus",
+        "Tipo bus",
         "Alergias",
         "Mensaje",
         "Fecha"
@@ -722,7 +735,7 @@ function exportRsvps(rsvps: Rsvp[]) {
         rsvp.attending ? "Si" : "No",
         String(rsvp.number_of_people),
         rsvp.companion_names?.join(", ") ?? "",
-        rsvp.bus_needed ? "Si" : "No",
+        rsvp.bus_needed ? "Sí" : "No",
         rsvp.bus_stop ?? "",
         rsvp.dietary_notes ?? "",
         rsvp.message ?? "",
@@ -776,7 +789,7 @@ function exportCombined(
       "Asistencia",
       rsvp.guest_name,
       `${rsvp.attending ? "Asiste" : "No asiste"} · ${rsvp.number_of_people} persona(s) · Bus: ${
-        rsvp.bus_needed ? rsvp.bus_stop || "Si" : "No"
+        rsvp.bus_needed ? rsvp.bus_stop || "Sí" : "No"
       }`,
       "",
       [rsvp.dietary_notes, rsvp.message].filter(Boolean).join(" | "),

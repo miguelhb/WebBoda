@@ -71,7 +71,7 @@ async function withTimeout<T>(
 
   const timeout = new Promise<never>((_, reject) => {
     timeoutId = setTimeout(() => {
-      reject(new Error("La conexion ha tardado demasiado."));
+      reject(new Error("La conexión ha tardado demasiado."));
     }, timeoutMs);
   });
 
