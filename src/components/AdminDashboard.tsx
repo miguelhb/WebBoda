@@ -8,6 +8,7 @@ type Rsvp = {
   id: string;
   guest_name: string;
   attending: boolean;
+  prewedding_attending: boolean;
   number_of_people: number;
   companion_names: string[];
   dietary_notes: string | null;
@@ -58,7 +59,9 @@ export function AdminDashboard() {
   const [contributions, setContributions] = useState<Contribution[]>([]);
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [songs, setSongs] = useState<SongSuggestion[]>([]);
-  const [isLoadingSession, setIsLoadingSession] = useState(true);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [isClientReady, setIsClientReady] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCreatingGift, setIsCreatingGift] = useState(false);
@@ -67,8 +70,9 @@ export function AdminDashboard() {
   const [status, setStatus] = useState<Status>({ type: "idle", message: "" });
 
   useEffect(() => {
+    setIsClientReady(true);
+
     if (!hasSupabaseConfig || !supabase) {
-      setIsLoadingSession(false);
       setStatus({
         type: "error",
         message: "Falta configurar Supabase en .env.local."
@@ -76,10 +80,17 @@ export function AdminDashboard() {
       return;
     }
 
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user ?? null);
-      setIsLoadingSession(false);
-    });
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        setUser(data.session?.user ?? null);
+      })
+      .catch((error) => {
+        setStatus({
+          type: "error",
+          message: `No se pudo comprobar la sesión: ${error.message}`
+        });
+      });
 
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
@@ -111,7 +122,11 @@ export function AdminDashboard() {
       0
     );
     const busOutboundSeats = attendingRsvps.reduce(
-      (total, rsvp) => total + (rsvp.bus_needed ? rsvp.number_of_people : 0),
+      (total, rsvp) =>
+        total +
+        (rsvp.bus_needed && rsvp.bus_stop !== "Solo vuelta"
+          ? rsvp.number_of_people
+          : 0),
       0
     );
     const busReturnSeats = attendingRsvps.reduce(
@@ -122,6 +137,8 @@ export function AdminDashboard() {
           : 0),
       0
     );
+    const preweddingCount = rsvps.filter((rsvp) => rsvp.prewedding_attending)
+      .length;
     const totalGiftAmount = contributions.reduce(
       (total, contribution) => total + Number(contribution.amount),
       0
@@ -141,6 +158,7 @@ export function AdminDashboard() {
       busReturnSeats,
       confirmedPeople,
       giftTotals,
+      preweddingCount,
       songCount: songs.length,
       totalGiftAmount
     };
@@ -159,7 +177,7 @@ export function AdminDashboard() {
       supabase
         .from("rsvps")
         .select(
-          "id,guest_name,attending,number_of_people,companion_names,dietary_notes,bus_needed,bus_stop,message,submitted_at"
+          "id,guest_name,attending,prewedding_attending,number_of_people,companion_names,dietary_notes,bus_needed,bus_stop,message,submitted_at"
         )
         .order("submitted_at", { ascending: false }),
       supabase
@@ -202,33 +220,82 @@ export function AdminDashboard() {
     setSongs((songResult.data ?? []) as SongSuggestion[]);
   }
 
-  async function handleLogin(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleLogin(event?: FormEvent<HTMLFormElement>) {
+    event?.preventDefault();
 
     if (!supabase) {
+      setStatus({
+        type: "error",
+        message: "Falta configurar Supabase en .env.local."
+      });
       return;
     }
 
-    const formData = new FormData(event.currentTarget);
-    const email = String(formData.get("email") ?? "").trim();
-    const password = String(formData.get("password") ?? "");
+    const email = loginEmail.trim();
+    const password = loginPassword;
+
+    if (!email || !password) {
+      setStatus({
+        type: "error",
+        message: "Introduce email y contraseña."
+      });
+      return;
+    }
 
     setIsSubmitting(true);
     setStatus({ type: "idle", message: "" });
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
+    let loginData: Awaited<
+      ReturnType<typeof supabase.auth.signInWithPassword>
+    >["data"] = { session: null, user: null };
+    let loginError: { message: string } | null = null;
+
+    try {
+      const result = await Promise.race([
+        supabase.auth.signInWithPassword({
+          email,
+          password
+        }),
+        new Promise<never>((_, reject) => {
+          window.setTimeout(
+            () =>
+              reject(
+                new Error("La conexión con Supabase está tardando demasiado.")
+              ),
+            10000
+          );
+        })
+      ]);
+      loginData = result.data;
+      loginError = result.error;
+    } catch (error) {
+      loginError = {
+        message: error instanceof Error ? error.message : String(error)
+      };
+    }
 
     setIsSubmitting(false);
 
-    if (error) {
+    if (loginError) {
       setStatus({
         type: "error",
-        message: `No se pudo iniciar sesión: ${error.message}`
+        message: `No se pudo iniciar sesión: ${loginError.message}`
       });
+      return;
     }
+
+    const loggedUser = loginData.user ?? null;
+
+    if (!loggedUser) {
+      setStatus({
+        type: "error",
+        message: "Supabase no ha devuelto una sesión válida."
+      });
+      return;
+    }
+
+    setUser(loggedUser);
+    setStatus({ type: "idle", message: "" });
   }
 
   async function handleLogout() {
@@ -361,24 +428,49 @@ export function AdminDashboard() {
     loadAdminData();
   }
 
-  if (isLoadingSession) {
-    return <p className="section-copy">Cargando sesión...</p>;
-  }
-
   if (!user) {
     return (
-      <form className="form-panel admin-login" onSubmit={handleLogin}>
+      <form
+        action="/admin"
+        className="form-panel admin-login"
+        method="post"
+        onSubmit={handleLogin}
+      >
         <label className="field">
           Email
-          <input name="email" placeholder="tu@email.com" type="email" required />
+          <input
+            autoComplete="email"
+            name="email"
+            onChange={(event) => setLoginEmail(event.target.value)}
+            placeholder="tu@email.com"
+            type="email"
+            value={loginEmail}
+            required
+          />
         </label>
         <label className="field">
-          Contrasena
-          <input name="password" type="password" required />
+          Contraseña
+          <input
+            autoComplete="current-password"
+            name="password"
+            onChange={(event) => setLoginPassword(event.target.value)}
+            type="password"
+            value={loginPassword}
+            required
+          />
         </label>
-        <button className="button" disabled={isSubmitting} type="submit">
+        <button
+          className="button"
+          disabled={isSubmitting}
+          type="submit"
+        >
           {isSubmitting ? "Entrando..." : "Entrar"}
         </button>
+        <p className="form-help" data-admin-ready-state>
+          {isClientReady
+            ? "Acceso privado listo."
+            : "Activando acceso privado..."}
+        </p>
         {status.message ? (
           <p className={`form-status ${status.type}`}>{status.message}</p>
         ) : null}
@@ -456,6 +548,10 @@ export function AdminDashboard() {
             <strong>{stats.busReturnSeats}</strong>
           </div>
           <div className="stat">
+            <span>Preboda</span>
+            <strong>{stats.preweddingCount}</strong>
+          </div>
+          <div className="stat">
             <span>Regalos</span>
             <strong>{formatEuros(stats.totalGiftAmount)}</strong>
           </div>
@@ -472,6 +568,7 @@ export function AdminDashboard() {
               <tr>
                 <th>Invitado</th>
                 <th>Asiste</th>
+                <th>Preboda</th>
                 <th>Personas</th>
                 <th>Acompanantes</th>
                 <th>Bus</th>
@@ -484,6 +581,7 @@ export function AdminDashboard() {
                 <tr key={rsvp.id}>
                   <td>{rsvp.guest_name}</td>
                   <td>{rsvp.attending ? "Si" : "No"}</td>
+                  <td>{rsvp.prewedding_attending ? "Sí" : "No"}</td>
                   <td>{rsvp.number_of_people}</td>
                   <td>{rsvp.companion_names?.join(", ") || "-"}</td>
                   <td>{rsvp.bus_needed ? rsvp.bus_stop || "Sí" : "No"}</td>
@@ -722,6 +820,7 @@ function exportRsvps(rsvps: Rsvp[]) {
       [
         "Invitado",
         "Asiste",
+        "Preboda",
         "Personas",
         "Acompanantes",
         "Bus",
@@ -733,6 +832,7 @@ function exportRsvps(rsvps: Rsvp[]) {
       ...rsvps.map((rsvp) => [
         rsvp.guest_name,
         rsvp.attending ? "Si" : "No",
+        rsvp.prewedding_attending ? "Sí" : "No",
         String(rsvp.number_of_people),
         rsvp.companion_names?.join(", ") ?? "",
         rsvp.bus_needed ? "Sí" : "No",
@@ -788,7 +888,9 @@ function exportCombined(
     ...rsvps.map((rsvp) => [
       "Asistencia",
       rsvp.guest_name,
-      `${rsvp.attending ? "Asiste" : "No asiste"} · ${rsvp.number_of_people} persona(s) · Bus: ${
+      `${rsvp.attending ? "Asiste" : "No asiste"} · Preboda: ${
+        rsvp.prewedding_attending ? "Sí" : "No"
+      } · ${rsvp.number_of_people} persona(s) · Bus: ${
         rsvp.bus_needed ? rsvp.bus_stop || "Sí" : "No"
       }`,
       "",

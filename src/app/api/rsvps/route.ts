@@ -6,6 +6,7 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const guestName = String(formData.get("guest_name") ?? "").trim();
     const attendingValue = String(formData.get("attending") ?? "");
+    const preweddingValue = String(formData.get("prewedding_attending") ?? "");
     const isAttending = attendingValue === "yes";
     const peopleValue = isAttending
       ? Number(formData.get("number_of_people") ?? 1)
@@ -16,7 +17,9 @@ export async function POST(request: NextRequest) {
         ? "Ida y vuelta"
         : busValue === "outbound_only"
           ? "Solo ida"
-          : null;
+          : busValue === "return_only"
+            ? "Solo vuelta"
+            : null;
     const companionNames = isAttending
       ? String(formData.get("companion_names") ?? "")
           .split("\n")
@@ -24,8 +27,8 @@ export async function POST(request: NextRequest) {
           .filter(Boolean)
       : [];
 
-    if (!guestName || !attendingValue) {
-      return formError(request, "Completa nombre y asistencia.", "confirmar");
+    if (!guestName || !attendingValue || !preweddingValue) {
+      return formError(request, "Completa nombre, asistencia y preboda.", "confirmar");
     }
 
     if (isAttending && (!busValue || peopleValue < 1)) {
@@ -40,6 +43,7 @@ export async function POST(request: NextRequest) {
     const { error } = await supabase.from("rsvps").insert({
       guest_name: guestName,
       attending: isAttending,
+      prewedding_attending: preweddingValue === "yes",
       number_of_people: peopleValue,
       companion_names: companionNames,
       bus_needed: isAttending && busValue !== "no",

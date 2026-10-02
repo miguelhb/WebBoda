@@ -13,100 +13,100 @@ const conchiGroups = [
     title: "El team principal",
     text: "Pablo, Teresa, Mamá y Papá. Un apoyo brutal para Conchi, a quien su hiperactividad les trae de cabeza. Siempre quiere hacer cosas y, a veces, no tantas veces como le gustaría a Conchi, consigue convencerles.",
     image:
-      "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/01_Family%20team.jpg"
   },
   {
     title: "Los Guardiola",
-    text: "La familia de mamá, con quienes Conchi pasaba los veranos en el pueblo. Hoy echaremos especialmente de menos a los abuelitos, pero nos dejaron el mejor legado: una familia increíble.",
+    text: "La familia de mamá, con quienes Conchi pasaba los veranos en el pueblo. Hoy echaremos especialmente de menos a los abuelitos, pero nos dejaron un legado lleno de anécdotas.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/02_Los%20Guardiola_Nietos%20y%20abuelitos.JPG"
   },
   {
     title: "Los García-Belenguer",
     text: "La familia de papá. Los culpables de los viajes a Zaragoza, de hablar alto y de vivirlo todo con mucha intensidad. Miguel dice que estamos locos, pero en el fondo le gusta.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/garcia-belenguer-horizontal.webp"
   },
   {
     title: "Inferno & Co",
-    text: "El núcleo duro de Conchi: para arreglar el mundo desde el sofá, hacer deporte, comer chuches, fabricar collares, resolver scape rooms o compartir cervezas. Compañeras fieles de aventuras y secretos de Conchi.",
+    text: "El núcleo duro de Conchi: para arreglar el mundo desde el sofá, hacer deporte, comer chuches, fabricar collares, resolver scape rooms o compartir cervezas.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/INFERNO%20%26%20Co_00.jpg"
   },
   {
     title: "Las de la uni",
     text: "Entre proyectos, maquetas, planos y alguna que otra palmera de chocolate fuimos creciendo hasta acabar en restaurantes healthy. Mención especial a Sara: sin ella, quién sabe si esta boda habría llegado a celebrarse.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/UNI.jpg"
   },
   {
-    title: "Los de la opo",
-    text: "Entre apuntes y exámenes llegaron las compañeras oficiales de desayunos. Porque no hay nada mejor que compartir sufrimiento y acabar celebrando nuestros nuevos destinos. Aquí da igual la edad: tomamos un matcha o nos montamos en las barquitas de Disney.",
+    title: "Las de la opo",
+    text: "Entre apuntes y exámenes llegaron las compañeras oficiales de desayunos. Porque no hay nada mejor que compartir sufrimiento y acabar celebrando nuestros nuevos destinos.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/opo-encuadre.webp"
   },
   {
     title: "Mis ahijados",
-    text: "En los años de San Jorge, Conchi intentó transmitir a Dios a un grupito de jóvenes. Algunas llegaron para quedarse y hoy forman parte de su vida de una manera muy especial.",
+    text: "En los años de catequesis de San Jorge, llegaron los ahijados de Conchi, que hoy forman parte de su vida de una manera muy especial.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/San%20Jorge.jpg"
   },
   {
     title: "Los del cole",
-    text: "TexCrecieron con Conchi entre estudios, sufrimientos con dibujo técnico y matemáticas, baloncesto, copas, fiestas y viajes. En fin, todas esas cosas que se hacen cuando tienes 18 años  y estas en la flor de la vida.",
+    text: "Crecieron con Conchi entre estudios, sufrimientos con dibujo técnico y matemáticas, baloncesto, copas, fiestas y viajes. En fin, todas esas cosas que se hacen cuando tienes 18 años  y estas en la flor de la vida.",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/COLE_00.jpg"
   },
   {
     title: "Las del Erasmus",
-    text: "No hay nada que una más que pasar un año fuera de casa. No nos quedó otra opción que crear una familia. Y aunque hayan pasado los años, Lieja siempre será nuestra casa y nosotras, familia.",
+    text: "No hay nada que una más que pasar un año fuera de casa. No nos quedó otra opción que crear una familia. Y aunque hayan pasado los años, Lieja siempre será nuestra casa.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/conchi/Erasmus_00.jpg"
   }
 ];
 
 const miguelGroups = [
   {
     title: "Los Hernández",
-    text: "La familia por parte de padre, unida hasta un punto que cuesta entender cuando vienes de fuera, y mucha culpa la tienen los abuelos. También que Manuel, Carlos y Miguel no se hayan separado desde que empezaron el colegio ha ayudado a mantener esta unión entre primos.",
+    text: "La familia por parte de padre, unida hasta un punto que cuesta entender cuando vienes de fuera, y mucha culpa la tienen los abuelos. Que Manuel, Carlos y Miguel no se hayan separado desde el colegio, también ha ayudado a mantener esa unión entre primos.",
     image:
-      "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/hernandez.webp"
   },
   {
     title: "Los Benito",
     text: "La familia por parte de madre, con quien Miguel pasaba los veranos en el pueblo y con los que aprendió a montar en bici.",
     image:
-      "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/benito.webp"
   },
   {
     title: "Los de Padilla",
     text: "Eran los amigos de Miguel del pueblo hasta que llegó Conchi. Ahora son los que avisan a Conchi para jugar al tenis y a Miguel para trabajar.",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/padilla.webp"
   },
   {
     title: "Los del barrio",
     text: "Es el grupo con el que Miguel estudió (no tanto), jugó al fútbol y creció.",
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/barrio-encuadre.webp"
   },
   {
     title: "Los de la bici",
     text: "¿Cuántos sábados noche ha dicho Miguel que mañana madrugaba? Estos son los culpables, identificables por su equipación de Power Ranger.",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/bici-encuadre.webp"
   },
   {
     title: "Los de la universidad",
     text: "No es sorpresa para nadie que Miguel no hizo mucha vida social en la Universidad, pero sí salió de allí con gente en la que sabe que se puede apoyar.",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/universidad.webp"
   },
   {
     title: "Los del trabajo",
     text: "Realmente no son los del trabajo. Son los que se convirtieron en amigos por casi pasar más tiempo juntos fuera del trabajo que trabajando.",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=80"
+      "/images/grupos/miguel/trabajo-encuadre.webp"
   }
 ];
 
@@ -127,7 +127,7 @@ export default async function Home() {
       {flash ? <FlashCookieCleaner /> : null}
       <nav className="nav">
         <a className="brand" href="#inicio">
-          <img alt="Conchi y Miguel" className="brand-logo" src="/cm-logo.jpeg" />
+          <img alt="Conchi y Miguel" className="brand-logo" src="/cm-logo-transparent.webp" />
           <span>Conchi & Miguel</span>
         </a>
         <div className="nav-links">
@@ -137,7 +137,7 @@ export default async function Home() {
           <a href="#nuestra-gente">Gente</a>
           <a href="#confirmar">Confirmar</a>
           <a href="#canciones">Canciones</a>
-          <a href="#regalos">Regalos</a>
+          <a href="#regalos">Cariño</a>
         </div>
       </nav>
 
@@ -147,8 +147,8 @@ export default async function Home() {
           <h1>Conchi & Miguel</h1>
           <p className="lead">
             Aquí encontraréis toda la información del día, la confirmación de
-            asistencia, las canciones, las fotos y algún detalle más para que
-            lleguéis preparados a una celebración bastante grande para nosotros.
+            asistencia, las fotos, las canciones y algún detalle más para que
+            lleguéis preparados al gran día.
           </p>
           <div className="hero-actions">
             <a className="button" href="#confirmar">
@@ -162,14 +162,15 @@ export default async function Home() {
         <div className="hero-photo intro-photo" aria-label="Conchi y Miguel" />
       </section>
 
-      <section className="section" id="plan">
+      <section className="section" data-section-number="01" id="plan">
         <div className="section-head">
-          <h2>Planning</h2>
+          <p className="section-kicker">El día</p>
+          <h2>Plan del día</h2>
         </div>
         <HandDrawnPlan />
       </section>
 
-      <section className="section alt" id="historia">
+      <section className="section alt" data-section-number="02" id="historia">
         <div className="story-grid">
           <div>
             <p className="eyebrow">Nuestra historia</p>
@@ -184,9 +185,8 @@ export default async function Home() {
               <p>
                 Aunque tampoco podemos decir que fuéramos especialmente rápidos,
                 durante unos cuantos años fuimos de café en café o de cerveza en
-                cerveza. Hasta que llegó un festival y, entre música, amigos y
-                probablemente alguna que otra decisión cuestionable, nos unió del
-                todo.
+                cerveza. Hasta que llegó un festival y, entre música y amigos,
+                nos unió del todo.
               </p>
               <p>
                 Desde 2019 hemos ido haciendo lo que mejor se nos da: no parar
@@ -216,19 +216,17 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section" id="fotos">
+      <section className="section" data-section-number="03" id="fotos">
         <div className="section-head">
-          <h2>Fotos</h2>
-          <p className="section-copy">
-            Algunas imágenes de este camino: viajes, planes, anécdotas y
-            pequeños momentos que también forman parte de nuestra historia.
-          </p>
+          <p className="section-kicker">Galería</p>
+          <h2>Algunas imágenes de este camino</h2>
         </div>
         <PhotoCarousel />
       </section>
 
-      <section className="section alt" id="nuestra-gente">
+      <section className="section alt" data-section-number="04" id="nuestra-gente">
         <div className="section-head">
+          <p className="section-kicker">Los nuestros</p>
           <h2>Nuestra gente</h2>
           <p className="section-copy">
             Una boda también es juntar mundos: familia, amigos de siempre y
@@ -242,7 +240,7 @@ export default async function Home() {
               {conchiGroups.map((group) => (
                 <article className="group-card" key={group.title}>
                   <div
-                    className="group-image"
+                    className={group.image.startsWith("/images/grupos/conchi/") ? "group-image group-image-conchi" : "group-image"}
                     style={{ backgroundImage: `url(${group.image})` }}
                   />
                   <div className="group-body">
@@ -259,7 +257,7 @@ export default async function Home() {
               {miguelGroups.map((group) => (
                 <article className="group-card" key={group.title}>
                   <div
-                    className="group-image"
+                    className="group-image group-image-miguel"
                     style={{ backgroundImage: `url(${group.image})` }}
                   />
                   <div className="group-body">
@@ -273,10 +271,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section" id="confirmar">
+      <section className="section" data-section-number="05" id="confirmar">
         <div className="rsvp-layout">
           <div>
-            <p className="eyebrow">RSVP</p>
+            <p className="eyebrow">Confirmación</p>
             <h2>Confírmanos si vienes y si necesitas autobús.</h2>
             <p className="section-copy">
               Esta respuesta se guarda para que podamos organizar asistencia,
@@ -292,10 +290,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section alt" id="canciones">
+      <section className="section alt" data-section-number="06" id="canciones">
         <div className="rsvp-layout">
           <div>
-            <p className="eyebrow">Música</p>
+            <p className="eyebrow">Canciones</p>
             <h2>¿Qué canción no puede faltar?</h2>
             <p className="section-copy">
               Déjanos una canción para la cena, la fiesta o ese momento en el
@@ -311,10 +309,11 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section" id="regalos">
+      <section className="section" data-section-number="07" id="regalos">
         <div className="section-head">
           <div className="section-title-copy">
-            <h2>Regalos</h2>
+            <p className="section-kicker">Detalles</p>
+            <h2>Muestras de cariño</h2>
             <p className="section-copy">
               El mejor regalo es que nos acompañéis en este día. Si aun así os
               apetece tener un detalle con nosotros, podéis hacerlo en la

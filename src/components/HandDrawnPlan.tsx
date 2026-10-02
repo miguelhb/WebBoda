@@ -1,56 +1,61 @@
 const planSteps = [
   {
     icon: "church",
+    image: "/images/plan/ceremonia-milagrosa-v1-transparent.webp",
     time: "13:00",
     title: "Ceremonia",
     text: "Basílica de la Milagrosa",
-    markerX: 62,
+    markerX: 63,
     markerY: 15,
-    labelX: 35,
+    labelX: 20,
     labelY: 15,
     side: "left"
   },
   {
     icon: "car",
-    time: "14:15",
+    image: "/images/plan/traslado-transparent.webp",
+    time: "14:30",
     title: "Traslado",
     text: "Hacia Soto de Gracia (posibilidad de autobús)",
-    markerX: 38,
+    markerX: 37,
     markerY: 33,
-    labelX: 66,
+    labelX: 80,
     labelY: 33,
     side: "right"
   },
   {
     icon: "dinner",
+    image: "/images/plan/comida-transparent.webp",
     time: "15:00",
     title: "Comida",
     text: "",
-    markerX: 62,
+    markerX: 63,
     markerY: 51,
-    labelX: 35,
+    labelX: 20,
     labelY: 51,
     side: "left"
   },
   {
     icon: "party",
+    image: "/images/plan/fiesta-transparent.webp",
     time: "19:00",
     title: "Fiesta",
     text: "",
-    markerX: 38,
+    markerX: 37,
     markerY: 69,
-    labelX: 66,
+    labelX: 80,
     labelY: 69,
     side: "right"
   },
   {
     icon: "bus",
+    image: "/images/plan/bus-transparent.webp",
     time: "00:00",
     title: "Autobus",
     text: "Vuelta a Plaza de Castilla",
-    markerX: 62,
+    markerX: 63,
     markerY: 87,
-    labelX: 35,
+    labelX: 20,
     labelY: 87,
     side: "left"
   }
@@ -79,7 +84,7 @@ export function HandDrawnPlan() {
               key={`${step.title}-icon`}
               style={{ left: `${step.markerX}%`, top: `${step.markerY}%` }}
             >
-              <HandIcon name={step.icon} />
+              <img alt="" className="paper-illustration" src={step.image} />
             </div>
           ))}
         </div>

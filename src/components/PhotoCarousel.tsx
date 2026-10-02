@@ -20,7 +20,7 @@ const photos = [
     image: "/photos/IMG-20220821-WA0011.jpg"
   },
   {
-    caption: "Agosto 2022 - excursión a Marrakech",
+    caption: "Agosto 2022 - Excursión a Marrakech",
     image: "/photos/IMG_3361_2.jpg"
   },
   {
@@ -28,7 +28,7 @@ const photos = [
     image: "/photos/DSCN0047.JPG"
   },
   {
-    caption: "Marzo 2024 - finde en Oporto",
+    caption: "Marzo 2024 - Finde en Oporto",
     image: "/photos/20240303_125055.jpg"
   },
   {
@@ -48,11 +48,11 @@ const photos = [
     image: "/photos/20250125_123142.jpg"
   },
   {
-    caption: "Octubre 2025 - Ofrenda de Pilares",
+    caption: "Octubre 2025 - Pilares",
     image: "/photos/ofrenda-pilares-2025.jpeg"
   },
   {
-    caption: "Agosto 2026 - senderismo por el Valle de Aran",
+    caption: "Agosto 2026 - Senderismo por el Valle de Aran",
     image: "/photos/whatsapp-2026-08-08-234134.jpeg"
   }
 ];

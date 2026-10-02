@@ -37,6 +37,7 @@ export function RsvpForm() {
     const formData = new FormData(form);
     const guestName = String(formData.get("guest_name") ?? "").trim();
     const attendingValue = String(formData.get("attending") ?? "");
+    const preweddingValue = String(formData.get("prewedding_attending") ?? "");
     const isAttending = attendingValue === "yes";
     const peopleValue = isAttending
       ? Number(formData.get("number_of_people") ?? 1)
@@ -49,10 +50,10 @@ export function RsvpForm() {
       .map((name) => name.trim())
       .filter(Boolean);
 
-    if (!guestName || !attendingValue) {
+    if (!guestName || !attendingValue || !preweddingValue) {
       setStatus({
         type: "error",
-        message: "Completa nombre y asistencia."
+        message: "Completa nombre, asistencia y preboda."
       });
       return;
     }
@@ -133,8 +134,8 @@ export function RsvpForm() {
     >
       <div className="field-grid">
         <label className="field">
-          Nombre
-          <input name="guest_name" placeholder="Tu nombre" required />
+          Nombre y apellidos
+          <input name="guest_name" placeholder="Tu nombre y apellidos" required />
         </label>
         <div className="field full">
           Asistencia
@@ -177,6 +178,7 @@ export function RsvpForm() {
                     </option>
                     <option value="round_trip">Sí, quiero autobús ida y vuelta</option>
                     <option value="outbound_only">Sí, quiero autobús solo ida</option>
+                    <option value="return_only">Sí, quiero autobús solo vuelta</option>
                     <option value="no">No, voy por mi cuenta</option>
                   </select>
                 </label>
@@ -217,6 +219,23 @@ export function RsvpForm() {
             </section>
           </div>
         </div>
+        <label className="field full">
+          Preboda
+          <span className="field-help">
+            Viernes 19, para ir calentando motores. Cuando se acerque la fecha
+            compartiremos más información.
+          </span>
+          <div className="choice-group">
+            <label className="choice-pill">
+              <input name="prewedding_attending" required type="radio" value="yes" />
+              Sí, me apunto
+            </label>
+            <label className="choice-pill">
+              <input name="prewedding_attending" required type="radio" value="no" />
+              No podré ir
+            </label>
+          </div>
+        </label>
         <label className="field full">
           Mensaje
           <textarea

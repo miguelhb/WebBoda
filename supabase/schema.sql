@@ -13,6 +13,7 @@ create table public.rsvps (
   guest_id uuid references public.guests(id) on delete set null,
   guest_name text not null,
   attending boolean not null,
+  prewedding_attending boolean not null default false,
   number_of_people integer not null default 1 check (number_of_people > 0),
   companion_names text[] not null default '{}',
   dietary_notes text,
