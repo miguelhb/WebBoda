@@ -17,7 +17,9 @@ export function EnvelopeIntro() {
         className="envelope-open-button"
         htmlFor="envelope-open-toggle"
       >
-        <span className="envelope-seal">C&amp;M</span>
+        <span className="envelope-seal">
+          <img alt="" src="/cm-logo-transparent.webp" />
+        </span>
         <span className="envelope-open-label">Abrir invitación</span>
       </label>
     </div>

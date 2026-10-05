@@ -1,6 +1,7 @@
 import { EnvelopeIntro } from "@/components/EnvelopeIntro";
 import { FlashCookieCleaner } from "@/components/FlashCookieCleaner";
 import { HandDrawnPlan } from "@/components/HandDrawnPlan";
+import { PeopleGroupCarousel } from "@/components/PeopleGroupCarousel";
 import { PhotoCarousel } from "@/components/PhotoCarousel";
 import { RsvpForm } from "@/components/RsvpForm";
 import { SongSuggestionForm } from "@/components/SongSuggestionForm";
@@ -205,14 +206,6 @@ export default async function Home() {
               </p>
             </div>
           </div>
-          <div className="story-photos" aria-label="Fotos de nuestra historia">
-            <figure className="story-photo">
-              <img
-                alt="Conchi y Miguel en los primeros años"
-                src="/story-2016.jpg"
-              />
-            </figure>
-          </div>
         </div>
       </section>
 
@@ -236,37 +229,19 @@ export default async function Home() {
         <div className="people-groups">
           <div className="people-group-section">
             <h3>Por parte de Conchi</h3>
-            <div className="group-grid" aria-label="Grupos de Conchi">
-              {conchiGroups.map((group) => (
-                <article className="group-card" key={group.title}>
-                  <div
-                    className={group.image.startsWith("/images/grupos/conchi/") ? "group-image group-image-conchi" : "group-image"}
-                    style={{ backgroundImage: `url(${group.image})` }}
-                  />
-                  <div className="group-body">
-                    <h4>{group.title}</h4>
-                    <p>{group.text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <PeopleGroupCarousel
+              groups={conchiGroups}
+              imageClassName="group-image-conchi"
+              label="Grupos de Conchi"
+            />
           </div>
           <div className="people-group-section">
             <h3>Por parte de Miguel</h3>
-            <div className="group-grid" aria-label="Grupos de Miguel">
-              {miguelGroups.map((group) => (
-                <article className="group-card" key={group.title}>
-                  <div
-                    className="group-image group-image-miguel"
-                    style={{ backgroundImage: `url(${group.image})` }}
-                  />
-                  <div className="group-body">
-                    <h4>{group.title}</h4>
-                    <p>{group.text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <PeopleGroupCarousel
+              groups={miguelGroups}
+              imageClassName="group-image-miguel"
+              label="Grupos de Miguel"
+            />
           </div>
         </div>
       </section>
@@ -276,10 +251,6 @@ export default async function Home() {
           <div>
             <p className="eyebrow">Confirmación</p>
             <h2>Confírmanos si vienes y si necesitas autobús.</h2>
-            <p className="section-copy">
-              Esta respuesta se guarda para que podamos organizar asistencia,
-              autobús, acompañantes y alergias desde la zona privada.
-            </p>
           </div>
           {flash?.section === "confirmar" ? (
             <p className={`form-status section-form-status ${flash.type}`}>

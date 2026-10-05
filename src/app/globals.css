@@ -175,6 +175,7 @@ textarea {
   width: 46px;
   height: 46px;
   place-items: center;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 48% 52% 50% 46% / 50% 47% 53% 50%;
   background:
@@ -192,6 +193,17 @@ textarea {
     inset 0 -5px 9px rgba(0, 0, 0, 0.28),
     0 5px 10px rgba(13, 31, 22, 0.24);
   animation: envelopeSeal 2250ms ease-in-out forwards;
+}
+
+.envelope-seal img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.22));
+  opacity: 0.96;
 }
 
 .envelope-seal::before,
@@ -1035,10 +1047,8 @@ h1 {
 
 .story-grid {
   min-width: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  gap: clamp(28px, 5vw, 74px);
-  align-items: start;
+  display: block;
+  max-width: 860px;
 }
 
 .story-text {
@@ -1176,6 +1186,42 @@ h1 {
   pointer-events: none;
 }
 
+.photo-carousel-hint {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.photo-carousel-hint span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: rgba(15, 59, 44, 0.32);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 18px rgba(13, 31, 22, 0.14);
+  backdrop-filter: blur(8px);
+}
+
+.photo-carousel-hint span::after {
+  width: 36px;
+  height: 1px;
+  content: "";
+  background: currentColor;
+}
+
 .photo-carousel-caption {
   position: absolute;
   left: 18px;
@@ -1268,7 +1314,44 @@ h1 {
   overscroll-behavior-x: contain;
   padding: 2px 2px 18px;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.group-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.group-scroll-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 4px;
+}
+
+.group-scroll-dots button {
+  width: 7px;
+  height: 7px;
+  min-height: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 59, 44, 0.22);
+  cursor: pointer;
+  padding: 0;
+  transition:
+    width 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.group-scroll-dots button.active {
+  width: 22px;
+  background: var(--sage);
+}
+
+.group-scroll-dots button:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
 }
 
 .group-card {

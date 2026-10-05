@@ -72,6 +72,11 @@ export function PhotoCarousel() {
               loading={index === 0 ? "eager" : "lazy"}
               src={photo.image}
             />
+            {index === 0 ? (
+              <div className="photo-carousel-hint" aria-hidden="true">
+                <span>Desliza</span>
+              </div>
+            ) : null}
             <figcaption className="photo-carousel-caption">
               <span>
                 {index + 1} / {photos.length}
